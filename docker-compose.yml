@@ -1,0 +1,15 @@
+version: '3.2'
+services:
+   db:
+    build: ./db
+    image: py-app-db
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+
+   app:
+    depends_on:
+      - db
+    build: ./app
+    image: py-app
+    volumes:
+      - ./app/scripts:/data/scripts
