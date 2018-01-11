@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    def xxx="${env.JENKINS_URL}"
+    def xxx="${env.JENKINS_HOME}"
     stages {
         stage('Example') {
             steps {
