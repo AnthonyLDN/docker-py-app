@@ -1,10 +1,18 @@
 pipeline {
-    agent any
-    def HOME="${env.JENKINS_HOME}"
+    def db, app
+
     stages {
-        stage('Example') {
+        stage('Clone Repository') {
+            checkout scm
+        }
+
+        stage('Build Docker Images') {
             steps {
-                echo "Running ${env.BUILD_ID} on ${HOME}"
+                sh 'echo "Building database image."'
+                db = docker.build(
+                    "py-app-db",
+                    "/var/jenkins_home/workspace/docker-pipeline/db"
+                )
             }
         }
     }
