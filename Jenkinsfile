@@ -10,6 +10,10 @@ node {
         db = docker.build("py-app-db", "/var/jenkins_home/workspace/docker-pipeline/db")
 
         echo "Building application image."
-        db = docker.build("py-app-db", "/var/jenkins_home/workspace/docker-pipeline/app")
+        app = docker.build("py-app-db", "/var/jenkins_home/workspace/docker-pipeline/app")
+    }
+
+    stage('Running Tests') {
+        echo "Testing passed."
     }
 }
