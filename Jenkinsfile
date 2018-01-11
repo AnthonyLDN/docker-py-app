@@ -1,7 +1,10 @@
-node {
-    def DB_PATH='${env.JENKINS_HOME}/db'
-
-    stage('Build images') {
-        sh 'echo ${DB_PATH}'
+pipeline {
+    agent any
+    stages {
+        stage('Example') {
+            steps {
+                echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+            }
+        }
     }
 }
