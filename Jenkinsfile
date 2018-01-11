@@ -7,13 +7,8 @@ node {
         }
 
         stage('Build Docker Images') {
-            steps {
-                sh 'echo "Building database image."'
-                db = docker.build(
-                    "py-app-db",
-                    "/var/jenkins_home/workspace/docker-pipeline/db"
-                )
-            }
+            sh 'echo "Building database image."'
+            db = docker.build("py-app-db", "/var/jenkins_home/workspace/docker-pipeline/db")
         }
     }
 }
