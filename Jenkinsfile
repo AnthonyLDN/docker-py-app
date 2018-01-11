@@ -7,6 +7,6 @@ node {
 
     stage('Build images') {
         sh 'echo "Building database image."'
-        db = docker.build("db/")
+        db = docker.build("py-app-db", "db/Dockerfile")
     }
 }
