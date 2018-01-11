@@ -1,12 +1,7 @@
 node {
-    def db, app
-
-    stage('Clone repository') {
-        checkout scm
-    }
+    def DB_PATH: "$REPO_PATH/db"
 
     stage('Build images') {
-        sh 'echo "Building database image."'
-        db = docker.build("py-app-db", "db/Dockerfile")
+        sh 'echo "$DB_PATH"'
     }
 }
