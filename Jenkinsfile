@@ -18,8 +18,8 @@ node {
     }
 
     stage('Push image') {
-        docker.withRegistry('docker.io', 'docker-hub-credentials') {
-            db_container.push()
+        docker.withRegistry('https://index.docker.io', 'docker-hub-credentials') {
+            db_container.push('latest')
         }
     }
 }
