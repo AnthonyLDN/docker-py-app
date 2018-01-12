@@ -7,10 +7,10 @@ node {
 
     stage('Build Docker Images') {
         echo "Building database image."
-        db_container = docker.build("ecsdanthony/py-app-db", "/var/jenkins_home/workspace/docker-pipeline/db")
+        db_container = docker.build("ecsdanthony/py-app-db:${env.BUILD_ID}", "/var/jenkins_home/workspace/docker-pipeline/db")
 
         echo "Building application image."
-        app_container = docker.build("ecsdanthony/py-app", "/var/jenkins_home/workspace/docker-pipeline/app")
+        app_container = docker.build("ecsdanthony/py-app:${env.BUILD_ID}", "/var/jenkins_home/workspace/docker-pipeline/app")
     }
 
     stage('Running Tests') {
@@ -18,9 +18,8 @@ node {
     }
 
     stage('Push image') {
-        docker.withRegistry('docker.io', 'docker-hub-credentials') {
-            db_container.push("${env.BUILD_NUMBER}")
-            db_container.push("latest")
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+            db_container.push()
         }
     }
 }
