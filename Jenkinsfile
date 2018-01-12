@@ -1,5 +1,5 @@
 node {
-    def db, app
+    def db_container, app_container
 
     stage('Clone Repository') {
         checkout scm
@@ -7,10 +7,10 @@ node {
 
     stage('Build Docker Images') {
         echo "Building database image."
-        db = docker.build("ecsdanthony/py-app-db", "/var/jenkins_home/workspace/docker-pipeline/db")
+        db_container = docker.build("ecsdanthony/py-app-db", "/var/jenkins_home/workspace/docker-pipeline/db")
 
         echo "Building application image."
-        app = docker.build("ecsdanthony/py-app", "/var/jenkins_home/workspace/docker-pipeline/app")
+        app_container = docker.build("ecsdanthony/py-app", "/var/jenkins_home/workspace/docker-pipeline/app")
     }
 
     stage('Running Tests') {
@@ -19,8 +19,8 @@ node {
 
     stage('Push image') {
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            db.push("${env.BUILD_NUMBER}")
-            db.push("latest")
+            db_container.push("${env.BUILD_NUMBER}")
+            db_container.push("latest")
         }
     }
 }
