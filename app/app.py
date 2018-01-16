@@ -77,7 +77,7 @@ def main():
 		conn = connect(db_host, db_name, db_username, db_password)
 		if conn is None:
 			print("Could not make database connection. Attempting again in 30 seconds.")
-			time.sleep(30)
+			time.sleep(5)
 		else:
 			break
 
