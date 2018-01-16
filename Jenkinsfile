@@ -18,6 +18,6 @@ node {
     }
 
     stage('Start: App DB') {
-        sh "docker run --net app-net --ip 172.21.0.10 -e MYSQL_ROOT_PASSWORD=password -d ecsdanthony/py-app-db"
+        sh "docker run --net app-net --ip 172.21.0.10 -e MYSQL_ROOT_PASSWORD=password -d --name app-db ecsdanthony/py-app-db"
     }
 }
