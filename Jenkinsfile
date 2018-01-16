@@ -7,10 +7,10 @@ node {
 
     stage('Build Docker Images') {
         echo "Building database image."
-        db_container = docker.build("ecsdanthony/py-app-db:${env.BUILD_ID}", "/var/jenkins_home/workspace/docker-pipeline/db")
+        db_container = docker.build("ecsdanthony/py-app-db", "/var/jenkins_home/workspace/docker-pipeline/db")
 
         echo "Building application image."
-        app_container = docker.build("ecsdanthony/py-app:${env.BUILD_ID}", "/var/jenkins_home/workspace/docker-pipeline/app")
+        app_container = docker.build("ecsdanthony/py-app", "/var/jenkins_home/workspace/docker-pipeline/app")
     }
 
     stage('Running Tests') {
@@ -18,6 +18,6 @@ node {
     }
 
     stage('Start: App DB') {
-        sh "docker run --net app-net --ip 172.21.0.10 -e MYSQL_ROOT_PASSWORD=password -d py-app-db"
+        sh "docker run --net app-net --ip 172.21.0.10 -e MYSQL_ROOT_PASSWORD=password -d ecsdanthony/py-app-db"
     }
 }
