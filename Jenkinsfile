@@ -18,7 +18,7 @@ node {
     }
 
     stage('Run App') {
-        sh "docker run --net app-net --ip 172.21.0.9 -it -v /var/jenkins_home/workspace/docker-pipeline/app/scripts:/data/scripts --name app ecsdanthony/py-app"
+        sh "docker run --net app-net --ip 172.21.0.9 -it -v /home/centos/jenkins_home/workspace/docker-pipeline/app/scripts/:/data/scripts --name app ecsdanthony/py-app"
     }
 
     stage('Run Tests') {
