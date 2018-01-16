@@ -80,7 +80,7 @@ def main():
 			time.sleep(30)
 		else:
 			break
-  			
+
 	cursor = conn.cursor()
 	scripts = []
 

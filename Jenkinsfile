@@ -17,9 +17,7 @@ node {
         echo "Testing passed."
     }
 
-    stage('Push image') {
-        docker.withRegistry('https://index.docker.io/v2/', 'docker-hub-credentials') {
-            db_container.push('latest')
-        }
+    stage('Starting App DB Instance') {
+        docker.image('ecsdanthony/py-app-db').withRun('--net app-net --ip 172.21.0.10 -e "MYSQL_ROOT_PASSWORD=password" -d')
     }
 }

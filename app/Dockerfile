@@ -5,4 +5,4 @@ RUN apk update \
 	&& pip3 install mysql-connector==2.1.4
 COPY app.py ./code/app.py
 WORKDIR /code
-CMD ["python3", "app.py", "/data/scripts/", "172.21.0.2", "ecsd", "ecsdadmin", "secretpassbruh"]
+CMD ["python3", "app.py", "/data/scripts/", "172.21.0.10", "ecsd", "ecsdadmin", "secretpassbruh"]
