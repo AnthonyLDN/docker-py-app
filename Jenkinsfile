@@ -13,15 +13,19 @@ node {
         app_container = docker.build("ecsdanthony/py-app", "/var/jenkins_home/workspace/docker-pipeline/app")
     }
 
-    stage('Run App DB') {
+    stage('Run DB Container') {
         sh "docker run --net app-net --ip 172.21.0.10 -e MYSQL_ROOT_PASSWORD=password -d --name app-db ecsdanthony/py-app-db"
     }
 
-    stage('Run App') {
+    stage('Run App Container') {
         sh "docker run --net app-net --ip 172.21.0.9 -i -v /home/centos/jenkins_home/workspace/docker-pipeline/app/scripts/:/data/scripts --name app ecsdanthony/py-app"
     }
 
     stage('Run Tests') {
         echo "Testing passed."
+    }
+
+    stage('Teardown Containers') {
+        sh "docker rm -f app app-db"
     }
 }
