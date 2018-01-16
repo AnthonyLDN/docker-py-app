@@ -18,6 +18,6 @@ node {
     }
 
     stage('Starting App DB Instance') {
-        docker.image('ecsdanthony/py-app-db').withRun('--net app-net --ip 172.21.0.10 -e "MYSQL_ROOT_PASSWORD=password" -d')
+        docker.image('ecsdanthony/py-app-db:${env.BUILD_ID}').withRun('-e "MYSQL_ROOT_PASSWORD=password" -d')
     }
 }
