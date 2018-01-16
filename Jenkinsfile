@@ -17,7 +17,7 @@ node {
         echo "Testing passed."
     }
 
-    stage('Starting: App DB') {
-        db_container.run("MYSQL_ROOT_PASSWORD="password" -d")
+    stage('Start: App DB') {
+        sh "docker run --net app-net --ip 172.21.0.10 -e MYSQL_ROOT_PASSWORD="password" -d py-app-db"
     }
 }
