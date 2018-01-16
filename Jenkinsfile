@@ -18,6 +18,6 @@ node {
     }
 
     stage('Starting: App DB') {
-        docker.image('ecsdanthony/py-app-db').withRun('-e "MYSQL_ROOT_PASSWORD=password"')
+        db_container.run("MYSQL_ROOT_PASSWORD="password" -d")
     }
 }
