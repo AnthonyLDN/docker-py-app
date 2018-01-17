@@ -25,11 +25,6 @@ node {
         echo "Testing passed."
     }
 
-    stage('Push to Docker Hub') {
-        sh "docker push ecsdanthony/py-app-db"
-        sh "docker push ecsdanthony/py-app"
-    }
-
     stage('Teardown Containers') {
         sh "docker rm -f app app-db"
     }
